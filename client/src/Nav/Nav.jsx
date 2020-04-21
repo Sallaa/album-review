@@ -16,17 +16,23 @@ const css_nav = css `
   }
 
   li {
-    margin-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `;
 
-const css_ul = css`
+const css_ul = css `
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  align-content: flex-start;
   list-style-type: none;
   padding: 1rem;
   margin-top: 0;
+`;
+
+const css_login = css `
+    margin-left: auto;
 `;
 
 export default() => {
@@ -40,7 +46,7 @@ export default() => {
                 <li>
                     <Link to="/about">About</Link>
                 </li>
-                <li css={css ` align-self: flex-end; margin: auto; `}>
+                <li css={css_login}>
                     <Link to="/login">Login</Link>
                 </li>
             </ul>
