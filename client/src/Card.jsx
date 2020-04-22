@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import React from "react";
-import { jsx, css } from "@emotion/core";
-import star from "./icons/star.svg";
+import React from 'react';
+import {jsx, css} from '@emotion/core';
+import star from './icons/star.svg';
 
 const css_card = css`
   padding: 1rem;
@@ -52,19 +52,24 @@ export default () => {
   return (
     <div css={css_card} class="card">
       <div class="ratings">
-        <h2>Article title</h2>
+        <h2>Album, Artist</h2>
         <div class="div_score">
           <img class="star" src={star} alt="star" />
           <p class="rating_score">4.9</p>
         </div>
       </div>
 
+      {/* TODO: genre tags? */}
+      <h4>By: Reviewer</h4>
       <p>
-        Jumps off balcony gives owner dead mouse at present then poops in litter
-        box snatches yarn and fights with dog cat chases laser then plays in
-        grass finds tiny spot in cupboard and sleeps all day jumps in bathtub
-        and meows when owner fills food dish the cat knocks over the food dish
-        cat slides down the water slide and into pool.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+        dicta corporis animi laudantium deleniti, assumenda dolorem architecto
+        accusamus molestias aspernatur. Laudantium inventore illum corporis
+        dolor quae corrupti, delectus nihil tenetur?Rerum perferendis illum
+        blanditiis? Odit quae deserunt aliquid suscipit ipsam voluptatum,
+        perspiciatis, facere architecto doloremque, placeat officiis voluptates
+        quo saepe fuga accusamus a facilis debitis consequatur eaque natus
+        laboriosam amet!
       </p>
     </div>
   );

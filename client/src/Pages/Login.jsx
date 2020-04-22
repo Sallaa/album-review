@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import React from "react";
-import {jsx, css} from "@emotion/core";
-const input = css `
-  input[type="text"] {
+import React from 'react';
+import {jsx, css} from '@emotion/core';
+const input = css`
+  input[type='text'],
+  input[type='password'] {
     border-style: solid;
     outline: none;
     width: 30%;
@@ -15,7 +16,8 @@ const input = css `
     transition-duration: 0.3s;
   }
 
-  input[type="text"]:focus {
+  input[type='text'],
+  input[type='password']:focus {
     border-color: rgb(36, 66, 184);
   }
 
@@ -44,17 +46,18 @@ const input = css `
   align-content: center;
 `;
 
-const center = css `
+const center = css`
   align-self: center;
 `;
 
-export default() => {
-    return (
-        <div css={input}>
-            <h1 css={center}>Log In</h1>
-            <input css={center} type="text" placeholder="login"/>
-            <input css={center} type="text" placeholder="password"/>
-            <button css={center}>Log In</button>
-        </div>
-    );
+export default () => {
+  return (
+    <div css={input}>
+      {/* TODO: login heading redundant */}
+      <h1 css={center}>Log In</h1>
+      <input css={center} type="text" placeholder="username" />
+      <input css={center} type="password" placeholder="password" />
+      <button css={center}>Log In</button>
+    </div>
+  );
 };
