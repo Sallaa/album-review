@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './Pages/Home';
 import Login from './Pages/Login';
-import About from './Pages/About';
+import New from './Pages/New';
 import Nav from './Nav/Nav';
 
 export default function App() {
@@ -19,8 +19,8 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route path="/new">
+            <New />
           </Route>
           <Route path="/login">
             <Login />

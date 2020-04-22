@@ -44,7 +44,7 @@ export default() => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <Link to="/new">Create New</Link>
                 </li>
                 <li css={css_login}>
                     <Link to="/login">Login</Link>
