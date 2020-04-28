@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx, css } from "@emotion/core";
-import Card from "../Card";
+import Card from "../components/Card";
 
 const styles = css`
   display: flex;

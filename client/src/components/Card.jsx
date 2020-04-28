@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import {jsx, css} from '@emotion/core';
-import star from './icons/star.svg';
+import star from '../icons/star.svg';
 
 const css_card = css`
   padding: 1rem;
