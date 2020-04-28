@@ -1,8 +1,7 @@
 /** @jsx jsx */
-import {jsx, css} from '@emotion/core';
+import {jsx, css} from "@emotion/core";
 import {Link} from "react-router-dom";
 import Button from "../components/button";
-
 const input = css `
   input[type="text"],
   input[type="password"] {
@@ -39,7 +38,7 @@ const input = css `
   flex-direction: column;
   align-content: center;
 
-  div > h1 {
+   div > h1 {
     align-self: center;
   }
 
@@ -54,19 +53,19 @@ const input = css `
   div > a {
     align-self: center;
   }
+
 `;
 
 export default() => {
     return (
         <div css={input}>
-            {/* TODO: login heading redundant */}
             <div css={input}>
-                <h1>Log In</h1>
-                <input type="text" placeholder="username"/>
-                <input type="password" placeholder="password"/>
-                <Button text={"Log In"}/>
-                <Link to="/signup">
-                    Don't have an Account? You can create one.
+                <h1>Create your account</h1>
+                <input type="text" placeholder="new username"/>
+                <input type="password" placeholder="new password"/>
+                <Button text={"Create my account"}/>
+                <Link to="/login">
+                    Already have an Account? Log In.
                     <span className="emoji" role="img" aria-label="victory-hand">
                         ✌️
                     </span>

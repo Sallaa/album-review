@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import Signup from './Pages/Signup';
 import New from './Pages/New';
 import Nav from './Nav/Nav';
 
@@ -24,6 +25,9 @@ export default function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
           </Route>
           <Route path="/">
             <Home />

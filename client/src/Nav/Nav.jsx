@@ -47,7 +47,7 @@ export default() => {
                     <Link to="/new">Create New</Link>
                 </li>
                 <li css={css_login}>
-                    <Link to="/login">Login</Link>
+                    <Link to="/login">Log In</Link>
                 </li>
             </ul>
         </nav>
