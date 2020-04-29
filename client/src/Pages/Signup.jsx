@@ -2,8 +2,12 @@
 import {jsx, css} from "@emotion/core";
 import {Link} from "react-router-dom";
 import Button from "../components/button";
+import { auth, generateUserDocument } from "../firebase";
+import {useState} from "react";
+
 const input = css `
   input[type="text"],
+  input[type="email"],
   input[type="password"] {
     border-style: solid;
     outline: none;
@@ -18,6 +22,7 @@ const input = css `
   }
 
   input[type="text"],
+  input[type="email"],
   input[type="password"]:focus {
     border-color: rgb(36, 66, 184);
   }
@@ -38,39 +43,97 @@ const input = css `
   flex-direction: column;
   align-content: center;
 
-   div > h1 {
+  div > h1 {
     align-self: center;
   }
 
-  div > input {
+  form > input {
     align-self: center;
   }
 
-  div > button {
+  form > button {
     align-self: center;
   }
 
   div > a {
     align-self: center;
   }
-
 `;
 
-export default() => {
+const Signup = () => {
+
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [error, setError] = useState(null);
+
+    const createUserWithEmailAndPasswordHandler = async(event, email, password) => {
+        event.preventDefault();
+        try {
+            const {user} = await auth.createUserWithEmailAndPassword(email, password);
+            console.log("done");
+            generateUserDocument(user);
+        } catch (error) {
+            setError("Error Signing up with email and password");
+        }
+
+        setEmail("");
+        setPassword("");
+    };
+
+    const onChangeHandler = (event) => {
+        const {name, value} = event.currentTarget;
+
+        if (name === "email") {
+            setEmail(value);
+        } else if (name === "password") {
+            setPassword(value);
+        }
+    };
+
     return (
+      <div css={input}>
         <div css={input}>
-            <div css={input}>
-                <h1>Create your account</h1>
-                <input type="text" placeholder="new username"/>
-                <input type="password" placeholder="new password"/>
-                <Button text={"Create my account"}/>
-                <Link to="/login">
-                    Already have an Account? Log In.
-                    <span className="emoji" role="img" aria-label="victory-hand">
-                        ✌️
-                    </span>
-                </Link>
+          <h1>Create your account</h1>
+          {error !== null && (
+            <div>
+              {error}
             </div>
+          )}
+          <form css={input}>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            placeholder="your email"
+            id="email"
+            onChange={(event) => onChangeHandler(event)}
+          />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="your password"
+            id="password"
+            onChange={(event) => onChangeHandler(event)}
+          />
+          <button
+            onClick={event => {
+              createUserWithEmailAndPasswordHandler(event, email, password);
+            }}
+          >
+            Sign up
+          </button>
+          </form>
+
+          <Link to="/login">
+            Already have an Account? Log In.
+            <span className="emoji" role="img" aria-label="victory-hand">
+              ✌️
+            </span>
+          </Link>
         </div>
+      </div>
     );
 };
+
+export default Signup;
