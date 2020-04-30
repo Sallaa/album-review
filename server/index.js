@@ -13,6 +13,7 @@ const port = 8080;
 const app = express();
 app.use(bodyParser.json());
 const db = admin.firestore();
+
 const reviewsCollection = db.collection('reviews');
 
 app.post('/createReview', function (req, res) {
