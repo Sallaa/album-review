@@ -94,35 +94,29 @@ const Signup = () => {
       <div css={input}>
         <div css={input}>
           <h1>Create your account</h1>
-          {error !== null && (
-            <div>
-              {error}
-            </div>
-          )}
+          {error !== null && <div>{error}</div>}
           <form css={input}>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="your email"
-            id="email"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="your password"
-            id="password"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <button
-            onClick={event => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Sign up
-          </button>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="your email"
+              id="email"
+              onChange={(event) => onChangeHandler(event)}
+            />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="your password"
+              id="password"
+              onChange={(event) => onChangeHandler(event)}
+            />
+            <Button
+              onClick={(event) => {
+                createUserWithEmailAndPasswordHandler(event, email, password)
+              } } text={"Sign Up"}
+            />
           </form>
 
           <Link to="/login">
