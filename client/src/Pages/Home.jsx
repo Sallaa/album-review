@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import React from "react";
-import { jsx, css } from "@emotion/core";
-import Card from "../components/Card";
+import React from 'react';
+import {jsx, css} from '@emotion/core';
+import Reviews from '../components/Reviews';
 
 const styles = css`
   display: flex;
@@ -11,15 +11,10 @@ const styles = css`
 `;
 
 export default () => {
-
-    return (
-        <div css={styles}>
-        <h1></h1>
-        <Card/>
-        <Card/>
-        <Card/>
-        </div>
-        
-    )
-
-}
+  return (
+    <div css={styles}>
+      <h1>Reviews</h1>
+      <Reviews />
+    </div>
+  );
+};

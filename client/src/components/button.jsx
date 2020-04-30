@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import {jsx} from "@emotion/core";
-import styled from "@emotion/styled";
+import {jsx} from '@emotion/core';
+import styled from '@emotion/styled';
 
-const Button = styled.button `
-  padding: 0.75rem 2rem;
+const Button = styled.button`
+  padding: 0.75rem 1.5rem;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -21,15 +21,14 @@ const Button = styled.button `
   }
 `;
 
-export default({css, text, onClick}) => {
-
-const handleClick = () => {
+export default ({css, text, onClick}) => {
+  const handleClick = () => {
     console.log('Click happened');
-  }
+  };
 
-    return (
-      <Button css={css} onClick={onClick}>
-        {text}
-      </Button>
-    );
+  return (
+    <Button css={css} onClick={onClick}>
+      {text}
+    </Button>
+  );
 };
