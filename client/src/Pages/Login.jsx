@@ -5,7 +5,7 @@ import Button from "../components/button";
 import { auth } from "../firebase";
 import { useState } from "react";
 
-const input = css `
+const input = css`
   input[type="text"],
   input[type="email"],
   input[type="password"] {
@@ -40,6 +40,10 @@ const input = css `
 
   .error {
     color: red;
+  }
+
+  .success {
+    color: green;
   }
 
   display: flex;
