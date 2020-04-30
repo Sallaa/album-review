@@ -2,7 +2,7 @@
 import {jsx, css} from "@emotion/core";
 import {Link} from "react-router-dom";
 import Button from "../components/button";
-import { auth, generateUserDocument } from "../firebase";
+import {auth} from "../firebase";
 import {useState} from "react";
 
 const input = css `
@@ -42,6 +42,10 @@ const input = css `
     color: red;
   }
 
+  .success {
+    color: green;
+  }
+
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -72,19 +76,25 @@ const Signup = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     const createUserWithEmailAndPasswordHandler = async(event, email, password) => {
-        event.preventDefault();
+      event.preventDefault();
+      setError(null);
+      setSuccess(null);
         try {
-            const {user} = await auth.createUserWithEmailAndPassword(email, password);
+            const user = await auth.createUserWithEmailAndPassword(email, password).then(() => {
+              setSuccess("Account created!");
+              setEmail("");
+              setPassword("");
+            });
             console.log("done");
-            generateUserDocument(user);
         } catch (error) {
-            setError("Error signing up with email and password");
+            setError(error.message);
+            setPassword("");
         }
 
-        setEmail("");
-        setPassword("");
+        
     };
 
     const onChangeHandler = (event) => {
@@ -102,6 +112,7 @@ const Signup = () => {
         <div css={input}>
           <h1>Create your account</h1>
           {error !== null && <p className="error">{error}</p>}
+          {success !== null && <p className="success">{success}</p>}
           <form css={input}>
             <input
               type="email"
