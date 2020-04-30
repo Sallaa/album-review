@@ -38,6 +38,10 @@ const input = css `
     display: inline-block;
   }
 
+  .error {
+    color: red;
+  }
+
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -58,6 +62,9 @@ const input = css `
   div > a {
     align-self: center;
   }
+  div > p {
+    align-self: center;
+  }
 `;
 
 const Signup = () => {
@@ -73,7 +80,7 @@ const Signup = () => {
             console.log("done");
             generateUserDocument(user);
         } catch (error) {
-            setError("Error Signing up with email and password");
+            setError("Error signing up with email and password");
         }
 
         setEmail("");
@@ -94,7 +101,7 @@ const Signup = () => {
       <div css={input}>
         <div css={input}>
           <h1>Create your account</h1>
-          {error !== null && <div>{error}</div>}
+          {error !== null && <p className="error">{error}</p>}
           <form css={input}>
             <input
               type="email"
