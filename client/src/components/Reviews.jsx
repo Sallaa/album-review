@@ -7,6 +7,8 @@ import Card from './Card';
 export default () => {
   const [reviews, setReviews] = useState([]);
 
+  // TODO: time stamp, sort by time added
+
   const fetchReviews = () => {
     fetch('/getReviews')
       .then((res) => res.json())

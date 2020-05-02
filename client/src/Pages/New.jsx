@@ -4,11 +4,10 @@ import {Link} from 'react-router-dom';
 import Button from '../components/button';
 import {auth} from '../firebase';
 import React, {useState} from 'react';
+import {Redirect} from 'react-router-dom';
 
 const input = css`
-  input[type='text'],
-  input[type='email'],
-  input[type='password'] {
+  input {
     border-style: solid;
     outline: none;
     width: 30%;
@@ -21,9 +20,7 @@ const input = css`
     transition-duration: 0.3s;
   }
 
-  input[type='text'],
-  input[type='email'],
-  input[type='password']:focus {
+  input:focus {
     border-color: rgb(36, 66, 184);
   }
 
@@ -99,8 +96,29 @@ const inline = css`
 `;
 
 export default () => {
-  // TODO states
+  const [album, setAlbum] = useState('');
+  const [artist, setArtist] = useState('');
+  const [rating, setRating] = useState(0);
+  const [review_body, setReview_Body] = useState('');
+  const [reviewer, setReviewer] = useState('Not Set');
 
+  const [leave, setLeave] = useState(false);
+
+  const addReview = (album, artist, rating, review_body, reviewer) => {
+    // TODO if checks
+    fetch('/createReview', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({album, artist, rating, review_body, reviewer})
+    }).then((res) => res.text());
+    setLeave(true);
+  };
+
+  // TODO: check login
+  // TODO: validate form and feedback
+  // TODO: time added
   return (
     <div css={input}>
       <div css={input}>
@@ -108,23 +126,54 @@ export default () => {
         <form css={input}>
           <div css={inline}>
             <h2>Album:</h2>
-            <input name="album" type="text" />
+            <input
+              name="album"
+              type="text"
+              onChange={(e) => setAlbum(e.target.value)}
+            />
             <span></span>
           </div>
           {/* Reviewer info autofill based on login */}
           <div css={inline}>
             <h2>Artist:</h2>
-            <input name="artist" type="text" />
+            <input
+              name="artist"
+              type="text"
+              onChange={(e) => setArtist(e.target.value)}
+            />
+            <span></span>
+          </div>
+
+          <div css={inline}>
+            <h2>Rating:</h2>
+            <input
+              name="artist"
+              type="number"
+              min="0"
+              max="5"
+              step="0.1"
+              onChange={(e) => setRating(e.target.value)}
+            />
             <span></span>
           </div>
 
           <div css={inline}>
             <h2>Review:</h2>
-            <textarea name="review_body" cols="40" rows="5"></textarea>
+            <textarea
+              name="review_body"
+              cols="40"
+              rows="5"
+              onChange={(e) => setReview_Body(e.target.value)}></textarea>
             <span></span>
           </div>
-          <Button text={'Add Review'} />
+          <Button
+            text={'Add Review'}
+            onClick={(e) =>
+              addReview(album, artist, rating, review_body, reviewer)
+            }
+          />
         </form>
+        {leave ? <Redirect to={'/'} /> : ''}
       </div>
     </div>
   );
