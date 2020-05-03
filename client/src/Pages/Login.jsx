@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import {jsx, css} from '@emotion/core';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Button from '../components/button';
 import {auth} from '../firebase';
 import React, {useState} from 'react';
@@ -108,6 +108,7 @@ export default () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const history = useHistory();
 
   const signInWithEmailAndPasswordHandler = async (event, email, password) => {
     event.preventDefault();
@@ -120,6 +121,7 @@ export default () => {
           setSuccess('Logged In!');
           setEmail('');
           setPassword('');
+          history.push("/new");
         });
       console.log('done');
     } catch (error) {

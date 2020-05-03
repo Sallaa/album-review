@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import React, { useContext } from "react";
 import {jsx, css} from "@emotion/core";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link, useHistory} from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
+import { auth } from "../firebase";
 
 const color = "white";
 
@@ -38,20 +39,30 @@ const css_login = css `
 
 export default() => {
   const [user] = useContext(UserContext);
+  const history = useHistory();
+
+  function logOut(){
+    auth.signOut().then(function() {
+      history.push("/login");
+    }).catch(function(error) {
+    // An error happened.
+  });
+  } 
+
     return (
       <nav css={css_nav}>
         <ul css={css_ul}>
           <li>
             <Link to="/">Home</Link>
           </li>
-          {user != null && (
+          {user !== null && (
             <li>
               <Link to="/new">Create New</Link>
             </li>
           )}
-          {user != null && (
+          {user !== null && (
             <li css={css_login}>
-              <Link to="/signout">Sign Out</Link>
+              <Link to="/signout" onClick={logOut}>Sign Out</Link>
             </li>
           )}
           {user == null && (

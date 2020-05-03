@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import {jsx, css} from '@emotion/core';
-import {Link} from 'react-router-dom';
 import Button from '../components/button';
-import {auth} from '../firebase';
 import React, {useState} from 'react';
 import {Redirect} from 'react-router-dom';
 

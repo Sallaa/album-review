@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,8 +13,12 @@ import New from './Pages/New';
 import Nav from './Nav/Nav';
 
 import {UserContextProvider} from './providers/UserProvider';
+import { UserContext } from "./providers/UserProvider";
 
 export default function App() {
+
+  const user = useContext(UserContext);
+  console.log(user);
   return (
     <UserContextProvider>
       <Router>
