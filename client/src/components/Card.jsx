@@ -24,6 +24,16 @@ const css_card = css`
     margin-right: 10px;
   }
 
+  .player {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: inherit;
+    overflow: hidden;
+    background: transparent;
+  }
+
   .ratings {
     display: flex;
     flex-flow: row wrap;
@@ -54,7 +64,7 @@ const css_card = css`
   }
 `;
 
-const inline = css`
+const inline = css `
   display: flex;
   justify-content: center;
   align-content: center;
@@ -62,33 +72,41 @@ const inline = css`
   vertical-align: middle;
 `;
 
-export default ({
-  id,
-  album,
-  artist,
-  rating,
-  reviewer,
-  review_body,
-  updateRating
+export default({
+    id,
+    album,
+    artist,
+    rating,
+    reviewer,
+    review_body,
+    updateRating
 }) => {
-  const [newRating, setNewRating] = useState(rating);
+    const [newRating,
+        setNewRating] = useState(rating);
 
-  console.log(reviewer);
+    console.log(reviewer);
 
-  return (
-    <div css={css_card} className="card">
-      <div css={inline} className="ratings">
-        <h2>{album}</h2>
-        <div className="div_score">
-          <img className="star" src={star} alt="star" />
-          <p className="rating_score">{rating}</p>
+    return (
+        <div css={css_card} className="card">
+            <div css={inline} className="ratings">
+                <h2>{album}</h2>
+                <div className="div_score">
+                    <img className="star" src={star} alt="star"/>
+                    <p className="rating_score">{rating}</p>
+                </div>
+            </div>
+
+            {/* TODO: genre tags? */}
+            <h4>{artist}</h4>
+            <p>{review_body}</p>
+            <p className="right">- {reviewer}</p>
+            <iframe
+                allow="autoplay *; encrypted-media *;"
+                frameborder="0"
+                height="300"
+                className="player"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src="https://embed.music.apple.com/us/album/dark-lane-demo-tapes/1511037323?app=music"></iframe>
         </div>
-      </div>
-
-      {/* TODO: genre tags? */}
-      <h4>{artist}</h4>
-      <p>{review_body}</p>
-      <p className="right">- {reviewer}</p>
-    </div>
-  );
+    );
 };

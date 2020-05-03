@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import React from "react";
+import React, { useContext } from "react";
 import {jsx, css} from "@emotion/core";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { UserContext } from "../providers/UserProvider";
 
 const color = "white";
 
@@ -36,21 +37,30 @@ const css_login = css `
 `;
 
 export default() => {
-
+  const [user] = useContext(UserContext);
     return (
-        <nav css={css_nav}>
-            <ul css={css_ul}>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/new">Create New</Link>
-                </li>
-                <li css={css_login}>
-                    <Link to="/login">Log In</Link>
-                </li>
-            </ul>
-        </nav>
+      <nav css={css_nav}>
+        <ul css={css_ul}>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          {user != null && (
+            <li>
+              <Link to="/new">Create New</Link>
+            </li>
+          )}
+          {user != null && (
+            <li css={css_login}>
+              <Link to="/signout">Sign Out</Link>
+            </li>
+          )}
+          {user == null && (
+            <li css={css_login}>
+              <Link to="/login">Log In</Link>
+            </li>
+          )}
+        </ul>
+      </nav>
     );
 
 }

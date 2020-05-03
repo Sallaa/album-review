@@ -1,16 +1,5 @@
 /** @jsx jsx */
 import {jsx, css} from '@emotion/core';
-<<<<<<< HEAD
-import {Link} from "react-router-dom";
-import Button from "../components/button";
-import { auth } from "../firebase";
-import { useState } from "react";
-
-const input = css`
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-=======
 import {Link} from 'react-router-dom';
 import Button from '../components/button';
 import {auth} from '../firebase';
@@ -20,7 +9,6 @@ const input = css`
   input[type='text'],
   input[type='email'],
   input[type='password'] {
->>>>>>> cf9178849302e41cf41c0786188ce971d5700ca0
     border-style: solid;
     outline: none;
     width: 30%;
