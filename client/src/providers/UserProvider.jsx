@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect} from "react";
+import React, {createContext, useState, useLayoutEffect} from "react";
 import { auth } from "../firebase";
 
 export const UserContext = createContext({user: null});
@@ -6,8 +6,8 @@ export const UserContext = createContext({user: null});
 export const UserContextProvider = props => {
     const [user, setUser] = useState();
 
-    useEffect(() => {
-      auth.onAuthStateChanged(function (user) {
+    useLayoutEffect(() => {
+      auth.onAuthStateChanged(user => {
         if (user) {
           // User is signed in.
           setUser(user);
@@ -16,7 +16,7 @@ export const UserContextProvider = props => {
           setUser(null);
         }
       });
-    })
+    }, [])
 
   return (
     <UserContext.Provider value={[user, setUser]}>

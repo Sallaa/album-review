@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import {jsx, css} from '@emotion/core';
 import {Link, useHistory} from 'react-router-dom';
-import Button from '../components/button';
+import Button from '../components/Button';
 import {auth} from '../firebase';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const input = css`
   input[type='text'],
@@ -172,9 +172,9 @@ export default () => {
           </div>
           <Link css={inline} to="/signup">
             Don't have an Account? You can create one.
-            <div className="emoji" role="img" aria-label="victory-hand">
+            <span className="emoji" role="img" aria-label="victory-hand">
               ✌️
-            </div>
+            </span>
           </Link>
           <Button
             onClick={(event) => {

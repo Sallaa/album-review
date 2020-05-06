@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React, {useState} from 'react';
 import {jsx, css} from '@emotion/core';
 import star from '../icons/star.svg';
 
@@ -81,11 +80,6 @@ export default({
     review_body,
     updateRating
 }) => {
-    const [newRating,
-        setNewRating] = useState(rating);
-
-    console.log(reviewer);
-
     return (
         <div css={css_card} className="card">
             <div css={inline} className="ratings">
@@ -100,13 +94,6 @@ export default({
             <h4>{artist}</h4>
             <p>{review_body}</p>
             <p className="right">- {reviewer}</p>
-            <iframe
-                allow="autoplay *; encrypted-media *;"
-                frameborder="0"
-                height="300"
-                className="player"
-                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                src="https://embed.music.apple.com/us/album/dark-lane-demo-tapes/1511037323?app=music"></iframe>
         </div>
     );
 };

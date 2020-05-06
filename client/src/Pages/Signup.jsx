@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx, css} from '@emotion/core';
 import {Link} from 'react-router-dom';
-import Button from '../components/button';
+import Button from '../components/Button';
 import {auth} from '../firebase';
 import {useState} from 'react';
 
@@ -154,9 +154,7 @@ const Signup = () => {
               id="email"
               onChange={(event) => onChangeHandler(event)}
             />
-            <span></span>
           </div>
-
           <div css={inline}>
             <h2>Password:</h2>
             <input
@@ -166,13 +164,12 @@ const Signup = () => {
               id="password"
               onChange={(event) => onChangeHandler(event)}
             />
-            <span></span>
           </div>
           <Link css={inline} to="/login">
             Already have an Account? Log In.
-            <div className="emoji" role="img" aria-label="victory-hand">
+            <span className="emoji" role="img" aria-label="victory-hand">
               ✌️
-            </div>
+            </span>
           </Link>
           <Button
             onClick={(event) => {

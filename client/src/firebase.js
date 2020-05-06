@@ -7,14 +7,14 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "api-key",
-  authDomain: "project-id.firebaseapp.com",
-  databaseURL: "https://project-id.firebaseio.com",
-  projectId: "project-id",
-  storageBucket: "project-id.appspot.com",
-  messagingSenderId: "sender-id",
-  appId: "app-id",
-  measurementId: "G-measurement-id",
+    apiKey: "AIzaSyCMwluOFuw2JYdxiuQ9fFtpGqmfvSF6QiI",
+    authDomain: "album-review-info1998.firebaseapp.com",
+    databaseURL: "https://album-review-info1998.firebaseio.com",
+    projectId: "album-review-info1998",
+    storageBucket: "album-review-info1998.appspot.com",
+    messagingSenderId: "560589081542",
+    appId: "1:560589081542:web:e11902f36ce36a11ba40c7",
+    measurementId: "G-1S0BQ9EDKJ"
 };
 
 // Initialize Firebase

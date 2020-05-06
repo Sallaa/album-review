@@ -1,11 +1,9 @@
 /** @jsx jsx */
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {jsx, css} from "@emotion/core";
-import {BrowserRouter as Router, Switch, Route, Link, useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 import { auth } from "../firebase";
-
-const color = "white";
 
 const css_nav = css `
   background-color: black;

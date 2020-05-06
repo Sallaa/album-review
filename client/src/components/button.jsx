@@ -22,9 +22,6 @@ const Button = styled.button`
 `;
 
 export default ({css, text, onClick}) => {
-  const handleClick = () => {
-    console.log('Click happened');
-  };
 
   return (
     <Button css={css} onClick={onClick}>

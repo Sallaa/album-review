@@ -1,7 +1,6 @@
 /** @jsx jsx */
-import React, {useState, useEffect} from 'react';
-import {jsx, css} from '@emotion/core';
-import star from '../icons/star.svg';
+import {useState, useEffect} from 'react';
+import {jsx} from '@emotion/core';
 import Card from './Card';
 
 export default () => {
