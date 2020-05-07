@@ -73,6 +73,7 @@ const inline = css`
     width: 120px;
     text-align: right;
     margin-right: 10px;
+    display: inline;
   }
 
   span {
@@ -93,7 +94,7 @@ const inline = css`
   }
 `;
 
-export default () => {
+export default ({user}) => {
   const [album, setAlbum] = useState('');
   const [artist, setArtist] = useState('');
   const [rating, setRating] = useState(0);
@@ -128,6 +129,7 @@ export default () => {
               name="album"
               type="text"
               onChange={(e) => setAlbum(e.target.value)}
+              required
             />
             <span></span>
           </div>
@@ -138,6 +140,7 @@ export default () => {
               name="artist"
               type="text"
               onChange={(e) => setArtist(e.target.value)}
+              required
             />
             <span></span>
           </div>
@@ -151,6 +154,7 @@ export default () => {
               max="5"
               step="0.1"
               onChange={(e) => setRating(e.target.value)}
+              required
             />
             <span></span>
           </div>
@@ -161,14 +165,14 @@ export default () => {
               name="review_body"
               cols="40"
               rows="5"
-              onChange={(e) => setReview_Body(e.target.value)}></textarea>
+              onChange={(e) => setReview_Body(e.target.value)}></textarea>{' '}
             <span></span>
           </div>
           <Button
             text={'Add Review'}
             onClick={(e) =>
-              addReview(album, artist, rating, review_body, reviewer)
-            }
+              addReview(album, artist, rating, review_body, user.displayName)
+            } // TODO: should break if user isnt logged in
           />
         </form>
         {leave ? <Redirect to={'/'} /> : ''}
