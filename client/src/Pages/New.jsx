@@ -69,6 +69,10 @@ const inline = css`
   flex-flow: row wrap;
   vertical-align: middle;
 
+  h3 {
+    color: #cc3300;
+  }
+
   h2 {
     width: 120px;
     text-align: right;
@@ -97,27 +101,41 @@ const inline = css`
 export default ({user}) => {
   const [album, setAlbum] = useState('');
   const [artist, setArtist] = useState('');
-  const [rating, setRating] = useState(0);
-  const [review_body, setReview_Body] = useState('');
-  const [reviewer, setReviewer] = useState('Not Set');
+  const [rating, setRating] = useState(5);
+  const [review, setReview] = useState('');
 
-  const [leave, setLeave] = useState(false);
+  console.log('input:\n' + review.replace(/\n/g, '<br/>'));
 
-  const addReview = (album, artist, rating, review_body, reviewer) => {
-    // TODO if checks
-    fetch('/createReview', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({album, artist, rating, review_body, reviewer})
-    }).then((res) => res.text());
-    setLeave(true);
+  const addReview = () => {
+    if (
+      user != null &&
+      album != '' &&
+      artist != '' &&
+      review != null &&
+      rating <= 5 &&
+      rating >= 0
+    ) {
+      const reviewer = user.displayName;
+      const add_time = Date.now();
+      const review_body = review.replace(/\n/g, '<br/>');
+      fetch('/createReview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          album,
+          artist,
+          rating,
+          review_body,
+          reviewer,
+          add_time
+        })
+      }).then((res) => res.text());
+    }
+    if (user == null) alert('Please log in first!');
   };
 
-  // TODO: check login
-  // TODO: validate form and feedback
-  // TODO: time added
   return (
     <div css={input}>
       <div css={input}>
@@ -128,17 +146,18 @@ export default ({user}) => {
             <input
               name="album"
               type="text"
+              placeholder="album name"
               onChange={(e) => setAlbum(e.target.value)}
               required
             />
             <span></span>
           </div>
-          {/* Reviewer info autofill based on login */}
           <div css={inline}>
             <h2>Artist:</h2>
             <input
               name="artist"
               type="text"
+              placeholder="artist name"
               onChange={(e) => setArtist(e.target.value)}
               required
             />
@@ -153,6 +172,7 @@ export default ({user}) => {
               min="0"
               max="5"
               step="0.1"
+              value={rating}
               onChange={(e) => setRating(e.target.value)}
               required
             />
@@ -162,20 +182,16 @@ export default ({user}) => {
           <div css={inline}>
             <h2>Review:</h2>
             <textarea
-              name="review_body"
+              required
+              name="review"
+              placeholder="review body"
               cols="40"
               rows="5"
-              onChange={(e) => setReview_Body(e.target.value)}></textarea>{' '}
+              onChange={(e) => setReview(e.target.value)}></textarea>
             <span></span>
           </div>
-          <Button
-            text={'Add Review'}
-            onClick={(e) =>
-              addReview(album, artist, rating, review_body, user.displayName)
-            } // TODO: should break if user isnt logged in
-          />
+          <Button text={'Add Review'} onClick={(e) => addReview()} />
         </form>
-        {leave ? <Redirect to={'/'} /> : ''}
       </div>
     </div>
   );

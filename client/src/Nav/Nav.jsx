@@ -75,17 +75,21 @@ export default ({user, callback}) => {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/new">Create New</Link>
-        </li>
+        {user && (
+          <li>
+            <Link to="/new">Create New</Link>
+          </li>
+        )}
         <li css={css_login}>
           {user && (
-            <Link to="/" onClick={() => firebase.auth().signOut()}>
+            <Link
+              to={window.location.pathname}
+              onClick={() => firebase.auth().signOut()}>
               Sign out
             </Link>
           )}
           {!user && (
-            <Link to="/" onClick={login}>
+            <Link to={window.location.pathname} onClick={login}>
               Log in
             </Link>
           )}

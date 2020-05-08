@@ -24,7 +24,7 @@ app.post('/createReview', function (req, res) {
 });
 
 app.get('/getReviews', async function (req, res) {
-  const sortedPosts = await reviewsCollection.orderBy('rating').get();
+  const sortedPosts = await reviewsCollection.orderBy('add_time', 'desc').get();
   const posts = [];
   for (const doc of sortedPosts.docs) {
     const post = doc.data();
