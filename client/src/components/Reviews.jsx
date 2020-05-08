@@ -7,7 +7,7 @@ export default () => {
   const [reviews, setReviews] = useState([]);
 
   const fetchReviews = () => {
-    fetch('/getReviews')
+    fetch("https://whispering-brook-67084.herokuapp.com/getReviews")
       .then((res) => res.json())
       .then((json) => setReviews(json));
   };

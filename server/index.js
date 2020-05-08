@@ -1,7 +1,7 @@
 // Requires: input conforms to specifications in README
 const admin = require('firebase-admin');
 const express = require('express');
-const bodyParser = require('body-parser');
+const cors = require('cors');
 const serviceAccount = require('./service-account.json');
 
 admin.initializeApp({
@@ -9,9 +9,9 @@ admin.initializeApp({
   databaseURL: 'https://album-review-info1998.firebaseio.com'
 });
 
-const port = 8080;
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
 const db = admin.firestore();
 
 const reviewsCollection = db.collection('reviews');
@@ -44,4 +44,10 @@ app.delete('/deleteReview', function (req, res) {
   res.send(`Deleted review with ID ${req.query.id}`);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+
+app.set('port', (process.env.PORT || 8080));
+
+// Start node server
+app.listen(app.get('port'), function () {
+  console.log('Node server is running on port ' + app.get('port'));
+});

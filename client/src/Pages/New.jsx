@@ -118,10 +118,10 @@ export default ({user}) => {
       const reviewer = user.displayName;
       const add_time = Date.now();
       const review_body = review.replace(/\n/g, '<br/>');
-      fetch('/createReview', {
-        method: 'POST',
+      fetch("https://whispering-brook-67084.herokuapp.com/createReview", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           album,
@@ -129,8 +129,8 @@ export default ({user}) => {
           rating,
           review_body,
           reviewer,
-          add_time
-        })
+          add_time,
+        }),
       }).then((res) => res.text());
     }
     if (user == null) alert('Please log in first!');
